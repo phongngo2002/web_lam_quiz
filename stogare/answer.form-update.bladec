@@ -1,0 +1,31 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+ <h2 class="font-bold mb-2 text-xl text-danger">Cập nhật đáp án</h2>
+ <form action="<?php echo \htmlentities(BASE_URL . 'answer/cap-nhat', ENT_QUOTES, 'UTF-8', false); ?>" method="post" enctype="multipart/form-data" id="form-answer-edit">
+ <div class="mb-3 form-input">
+ <input type="hidden" name="question_id" value="<?php echo \htmlentities($answer->question_id, ENT_QUOTES, 'UTF-8', false); ?>">
+ <input type="hidden" value="<?php echo \htmlentities($answer->id, ENT_QUOTES, 'UTF-8', false); ?>" name="id_ans">
+ <label for="exampleInputEmail1" class="form-label">Đáp án thứ nhất</label>
+ <input type="text" class="form-control" name="form-answer" value="<?php echo \htmlentities($answer->content, ENT_QUOTES, 'UTF-8', false); ?>">
+ <small class="text-danger"></small>
+ </div>
+ <div class="mb-3">
+ <div class="mb-1">
+ <img src="<?php echo \htmlentities(IMAGE_URL, ENT_QUOTES, 'UTF-8', false); ?><?php echo \htmlentities($answer->img, ENT_QUOTES, 'UTF-8', false); ?>" alt="" class="rounded-circle" style="max-height: 125px; ">
+ </div>
+ <label for="exampleInputEmail1" class="form-label">Hình mô tả (nếu có)</label>
+ <input type="file" class="form-control" name="form-img-answer">
+ </div>
+ <div class="mb-3">
+ <label for="exampleInputEmail1" class="form-label">Đáp án đúng</label>
+ <select class="form-select" aria-label="Default select example" name="form-correct">
+ <option value="0" <?php echo \htmlentities($answer->is_correct == 0 ? 'selected' : '', ENT_QUOTES, 'UTF-8', false); ?>>NO</option>
+ <option value="1" <?php echo \htmlentities($answer->is_correct == 1 ? 'selected' : '', ENT_QUOTES, 'UTF-8', false); ?>>YES</option>
+ </select>
+ </div>
+ <button type="button" class="btn btn-primary" id="btn-submit">Lưu</button>
+ </form>
+
+<script src="<?php echo \htmlentities(BASE_URL.'js/validate/answer-edit.js', ENT_QUOTES, 'UTF-8', false); ?>" type="module"></script>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.main'); } ?>

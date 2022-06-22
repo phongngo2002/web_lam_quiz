@@ -1,0 +1,24 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<h2 class="font-bold mb-2 text-xl text-danger">Cập nhật câu hỏi</h2>
+ <form action="<?php echo \htmlentities(BASE_URL . 'question/'.$id.'/cap-nhat', ENT_QUOTES, 'UTF-8', false); ?>" method="post" enctype="multipart/form-data" id="form-question">
+ <div class="mb-3 form-input">
+ <label for="exampleInputEmail1" class="form-label">Tiêu đề</label>
+ <input type="text" class="form-control" name="form-name" value="<?php echo \htmlentities($question->name, ENT_QUOTES, 'UTF-8', false); ?>">
+ <small class="text-danger"></small>
+ </div>
+ <div class="mb-3">
+ <div class="mb-1">
+ <img src="<?php echo \htmlentities(IMAGE_URL.''.$question->img, ENT_QUOTES, 'UTF-8', false); ?>" alt="" class="rounded-circle" style="max-height: 125px; ">
+ </div>
+ <label for="exampleInputEmail1" class="form-label">Ảnh đại diện</label>
+ <input type="file" class="form-control" name="form-img">
+ </div>
+ <button type="button" class="btn btn-primary" id="btnSubmit">Lưu</button>
+ <a href="<?php echo \htmlentities(BASE_URL.'question/'.$question->quiz_id.'/list', ENT_QUOTES, 'UTF-8', false); ?>"><button type="button" class="btn btn-success">Quay lại</button></a>
+ </form>
+
+
+ <script src="<?php echo \htmlentities(BASE_URL.'js/validate/question.js', ENT_QUOTES, 'UTF-8', false); ?>" type="module"></script>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.main'); } ?>

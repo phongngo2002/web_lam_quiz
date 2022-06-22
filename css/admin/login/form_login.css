@@ -1,0 +1,16 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+#app{
+    padding-top: 5%;
+}
+#form-dn{
+    max-width: 50%;
+    margin: auto;
+    
+}
+#form-logo{
+    text-align: center;
+}
+#form-logo img{
+    max-height: 125px;
+   
+}
