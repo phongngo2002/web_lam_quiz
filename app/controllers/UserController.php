@@ -10,12 +10,12 @@ class UserController
 {
     public function index()
     {
-        $query = User::select()->orderBy('id','desc');
+        $query = User::select()->orderBy('id', 'desc');
         $users = $query->get();
         $user = User::find($_SESSION['id_user']);
         // $VIEW_PAGE = "./app/views/users/index.php";
         // include_once "./app/views/layout.php";
-        return view('users.index',[
+        return view('users.index', [
             'users' => $users,
             'user' => $user
         ]);
@@ -27,7 +27,7 @@ class UserController
         $roles = Role::all();
         // $VIEW_PAGE = "./app/views/users/add-form.php";
         // include_once "./app/views/layout.php";
-        return view('users.add-form',[
+        return view('users.add-form', [
             'user' => $user,
             'roles' => $roles
         ]);
@@ -37,7 +37,7 @@ class UserController
         $img = $_FILES['avatar']['name'];
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         if (strlen($img) > 0) {
-            move_uploaded_file($_FILES["avatar"]["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . '/asm1/img/' . $_FILES['avatar']['name']);
+            move_uploaded_file($_FILES["avatar"]["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . '/web_lam_quiz/img/' . $_FILES['avatar']['name']);
         } else {
             $img = '20e10d7f0556722e4b4e32c7241d0638.jpg';
         }
@@ -72,7 +72,7 @@ class UserController
         $roles = Role::all();
         $userUpdate = User::find($id);
         $user = User::find($_SESSION['id_user']);
-        return view('users.update-form',[
+        return view('users.update-form', [
             'roles' => $roles,
             'data' => $userUpdate,
             'user' => $user,
@@ -89,7 +89,7 @@ class UserController
         $img = $_FILES['avatar']['name'];
         $user = User::find($id);
         if (strlen($img) > 0) {
-            move_uploaded_file($_FILES["avatar"]["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . '/asm1/img/' . $_FILES['avatar']['name']);
+            move_uploaded_file($_FILES["avatar"]["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . '/web_lam_quiz/img/' . $_FILES['avatar']['name']);
         } else {
             $img = $user->avatar;
         }
@@ -137,7 +137,7 @@ class UserController
         $subjects = Subject::where('author_id', '=', $user->id)->get();
         // $VIEW_PAGE = './app/views/users/profile-user.php';
         // include "./app/views/layout.php";
-        return view('users.profile-user',[
+        return view('users.profile-user', [
             'user' => $user,
             'rold' => $role,
             'subjects' => $subjects

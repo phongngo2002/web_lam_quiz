@@ -50,7 +50,6 @@ function applyRouting($url){
     //quiz
     $router->group(['prefix' => 'quiz'], function($router){
     $router->get('/',[QuizController::class,'index'],['before' => 'check-login']);
-  
     $router->get('tao-moi',[QuizController::class,'addForm'],['before' => 'check-login']);
     $router->post('tao-moi',[QuizController::class,'saveAdd'],['before' => 'check-login']);
     $router->get('{id}/xoa',[QuizController::class,'remove'],['before' => 'check-login']);
@@ -58,7 +57,7 @@ function applyRouting($url){
     $router->post('cap-nhat',[QuizController::class,'saveUpdate'],['before' => 'check-login']);
     $router->get('{quiz_id}/lam-bai',[QuizController::class,'lamBai'],['before' => 'check-login']);
     $router->post('kiem-tra',[QuizController::class,'kiemTra'],['before' => 'check-login']);
-    $router->get('/{subject_id}',[QuizController::class,'quiz_by_subject_id'],['before' => 'check-login']);
+  
     });
     //Question
     $router->group(['prefix' => 'question'], function($router){

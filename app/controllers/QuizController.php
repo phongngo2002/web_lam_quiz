@@ -18,20 +18,12 @@ class QuizController
         $user = User::find($_SESSION['id_user']);
         $subjects = Subject::all();
         $quiz = null;
-        $quiz = Quiz::where('subject_id', '=', $subjects[0]->id)->get();
-
-        return view('quiz.index', [
-            'subjects' => $subjects,
-            'quiz' => $quiz,
-            'user' => $user
-        ]);
-    }
-
-    public function quiz_by_subject_id($subject_id)
-    {
-        $user = User::find($_SESSION['id_user']);
-        $subjects = Subject::all();
-        $quiz = Quiz::where('subject_id', '=', $subject_id)->get();
+        $condition = isset($_GET['subject_id']) ? $_GET['subject_id'] : $subjects[0]->id;
+        if (count($subjects) > 0) {
+            $quiz = Quiz::where('subject_id', '=', $condition)->get();
+        } else {
+            $quiz = [];
+        }
         return view('quiz.index', [
             'subjects' => $subjects,
             'quiz' => $quiz,

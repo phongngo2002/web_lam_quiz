@@ -43,7 +43,7 @@
 <script>
     const formSelect = document.getElementById('form-select');
     formSelect.addEventListener('change', () => {
-        document.location = `http://localhost/web_lam_quiz/quiz/${+formSelect.value}`;
+        document.location = `http://localhost/web_lam_quiz/quiz?subject_id=${+formSelect.value}`;
     })
 </script>
 @endsection
